@@ -1,0 +1,9 @@
+version: '1'
+
+services:
+  translate-app:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app

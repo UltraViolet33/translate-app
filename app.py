@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, flash 
 from deep_translator import GoogleTranslator
 import json
 
@@ -25,11 +25,15 @@ def index_post():
             source=source_language, target=target_language
         ).translate(text=original_text)
 
-        print(translation)
-
         return render_template(
             "results.html", translated_text=translation, original_text=original_text
         )
 
     except:
+        flash('An error occured')
         return redirect(url_for("index"))
+
+
+if __name__ == "__main__":
+    
+    app.run(host='0.0.0.0', debug=True)
